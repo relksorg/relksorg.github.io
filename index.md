@@ -6,8 +6,7 @@ description: "Perry Newlin's personal catalog of FPGA projects and HDL code snip
 permalink: /
 ---
 
-# Focus on writing good documentation
-{: .fs-9 }
+# About this Website
 
 ---
 
