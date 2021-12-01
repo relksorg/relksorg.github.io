@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Microblaze Processor 
+title: Microblaze 
 parent: Learning Resources
 nav_order: 3
 ---
 
-# Learning Resources
+# Microblaze
