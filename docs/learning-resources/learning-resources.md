@@ -3,7 +3,7 @@ layout: default
 title: Learning Resources
 permalink: /docs/learning-resources
 has_children: true
-nav_order: 2
+nav_order: 3
 ---
 
 # Learning Resources
