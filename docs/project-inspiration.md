@@ -11,4 +11,6 @@ Staying motivated to continue working on projects is hard. Especially after many
 
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DbfejwP1d3c" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+<video width="320" height="240" controls>
+  <source src="www.relks.org/stevejobs.mp4" type="video/mp4">
+</video>
