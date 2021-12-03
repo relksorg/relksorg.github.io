@@ -2,7 +2,6 @@
 layout: default
 title: Project Inspiration
 nav_order: 5
-youtubeId: DbfejwP1d3c
 ---
 
 # Project Inspiration
@@ -12,5 +11,4 @@ Staying motivated to continue working on projects is hard. Especially after many
 
 ---
 
-{% include youtubePlayer.html id=page.DbfejwP1d3c %}
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DbfejwP1d3c" frameborder="0" allow="autoplay; encrypted-media"></iframe>
