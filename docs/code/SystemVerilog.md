@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SystemVerilog
-parent: code
+parent: Code
 nav_order: 1
 ---
 
