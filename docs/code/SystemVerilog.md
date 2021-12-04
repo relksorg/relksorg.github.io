@@ -15,7 +15,7 @@ nav_order: 1
 * PMOD output testing (made a custom LED PMOD device)
 * Clk IP core, 25MHz sysclk input, 100MHz out
 
-```SystemVerilog
+```verilog
 `timescale 1ns / 1ps
 
 module top
