@@ -5,7 +5,7 @@ parent: code
 nav_order: 1
 ---
 
-# SystemVerilog Code 
+# SystemVerilog 
 
 ---
 
