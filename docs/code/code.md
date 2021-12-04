@@ -3,7 +3,7 @@ layout: default
 title: Code
 permalink: /docs/code
 has_children: true
-nav_order: 1
+nav_order: 2
 ---
 
 # Code

@@ -2,7 +2,7 @@
 layout: default
 title: SystemVerilog
 parent: code
-nav_order: 2
+nav_order: 1
 ---
 
 # SystemVerilog Code 
@@ -15,7 +15,7 @@ nav_order: 2
 * PMOD output testing (made a custom LED PMOD device)
 * Clk IP core, 25MHz sysclk input, 100MHz out
 
-```sv
+```SystemVerilog
 `timescale 1ns / 1ps
 
 module top
@@ -98,5 +98,4 @@ module top
     end
     
 endmodule
-
 ```
