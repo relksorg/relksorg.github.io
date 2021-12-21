@@ -8,7 +8,7 @@ nav_order: 3
 # Genesys ZU-5EV
 
 ```
-et_property CONFIG_VOLTAGE 3.3 [current_design]
+set_property CONFIG_VOLTAGE 3.3 [current_design]
 set_property CFGBVS VCCO [current_design]
 
 #### This file is a general .xdc for the Genesys ZU-5EV Rev. D

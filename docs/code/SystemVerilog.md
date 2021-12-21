@@ -11,10 +11,10 @@ nav_order: 1
 
 ### Genesys-ZU-5EV
 
-* Variable Square-wave generation (1KHz, 500Hz, 250Hz | 1Hz, 500mHz, 250mHz)
+* Variable Square-wave generation (1KHz, 500Hz, 250Hz, 1Hz, 500mHz, 250mHz)
 * Clk IP core, 125MHz sysclk input, 50MHz out
 * Switch clk reset *sw[3]*
-* BTN clk variation control: *btn[0], *btn[1]*
+* BTN clk variation control: *btn[0], btn[1]*
 * **FUTURE PATCHES NEEDED:** Generate clock circuitry for each timing mode, instead of changing dividing num
 
 ```verilog
