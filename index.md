@@ -19,11 +19,11 @@ Relks.org serves as a personal catalog for my FPGA projects and learning resourc
 1. SystemVerilog and Verilog. *maybe VHDL in the future*  
 2. Microblaze, Zynq, and RISC-V
 3. Constraint Files
-4. Xilinx FPGAs *maybe I'll experiment with Lattice FPGAs in the future*
+4. Xilinx FPGA / MPSoCs
+5. Lattice FPGAs
 
 ---
 
 ### License
 
-MIT License 
-
+MIT License
