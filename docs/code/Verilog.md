@@ -10,7 +10,7 @@ nav_order: 2
 ---
 
 ### Orangecrab r0.2 (LFE5U-25F-8MG285C)
-* Test blink LEDs attached from pin 13 to 12
+* Test blink LEDs attached to GPIO: 13, 12, 11, 10, 9, 6, 5
 
 ```verilog
 `default_nettype none
