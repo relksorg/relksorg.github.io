@@ -10,7 +10,10 @@ permalink: /
 
 ---
 
-Relks.org serves as a personal catalog for my FPGA projects and learning resources. I've experimented with creating numerous websites in the past, many of which I never brought forward to the public eye. At this point, I've easily created a dozen or so websites. None of them really sat right with me; I was never a huge fan of writing out massive explanatory excerpts. I just wanted a simple website with code, schematics, and brief lightweight descriptions in the form of bullet points. This website is not tutorial-focused, but feel free to use things you find here in your own endeavors. 
+Relks.org serves as a personal catalog for my FPGA projects and learning resources. I've experimented with creating numerous websites in the past, many of which I never brought forward to the public eye. At this point, I've easily created a dozen or so websites. None of them really sat right with me; I was never a huge fan of writing out massive explanatory excerpts. I just wanted a simple website with code, schematics, and brief lightweight descriptions in the form of bullet points. This website is not tutorial-focused, but feel free to use things you find here in your own endeavors.
+
+*Not all of my projects have been added here*
+*It will be done once school calms down.*
 
 ---
 
