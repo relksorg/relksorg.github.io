@@ -10,6 +10,47 @@ nav_order: 2
 ---
 
 ### Orangecrab r0.2 (LFE5U-25F-8MG285C)
+* Experimentation with concatenation -> "{}"
+
+```Verilog
+`default_nettype none
+
+/*
+ *  led experimentations
+ */
+
+module top (
+    input clk48,
+    output rgb_led0_r,
+    output rgb_led0_g,
+    output rgb_led0_b,
+    output reg [6:0] gpio,
+);
+    // Create a 27 bit register
+    reg [26:0] counter = 0;
+    reg stb = 0;
+
+    // Every positive edge increment register by 1
+
+    localparam a = 1'b1;
+    localparam b = 2'b01;
+    localparam q = 3'b101;
+    always @(posedge clk48) begin
+        counter <= counter + 1;
+    end
+
+    always @(posedge counter[24]) begin
+      //      (LSB) 1 + 01 + 101 (MSB)
+      //      RESULT :   1011010
+      gpio[6:0] <= {a,b,q};
+    end
+
+endmodule
+```
+
+---
+
+### Orangecrab r0.2 (LFE5U-25F-8MG285C)
 * Test blink LEDs attached to GPIO: 13, 12, 11, 10, 9, 6, 5
 
 ```verilog
