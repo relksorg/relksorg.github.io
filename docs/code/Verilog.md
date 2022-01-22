@@ -12,7 +12,7 @@ nav_order: 2
 ### Orangecrab r0.2 (LFE5U-25F-8MG285C)
 * Experimentation with concatenation -> "{}"
 
-```Verilog
+```verilog
 `default_nettype none
 
 /*
