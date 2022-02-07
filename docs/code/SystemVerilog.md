@@ -11,6 +11,214 @@ nav_order: 1
 
 ### Genesys-ZU-5EV
 
+* 1 to 5KHz & 10 to 50KHz square wave generation - improved design
+* parallel counting 
+* assumes input clk is 100MHz
+
+```verilog
+`timescale 1ns / 1ps
+
+module oneToFiftyKHz
+#( 
+parameter oneKhzSpeed = 20'd100_000,
+parameter twoKhzSpeed = 20'd50_000,
+parameter threeKhzSpeed = 20'd31_250, 
+parameter fourKhzSpeed = 20'd25_000,
+parameter fiveKhzSpeed = 20'd20_000,
+
+//*10
+
+parameter tenKhzSpeed = 20'd10_000,
+parameter twentyKhzSpeed = 20'd5_000,
+parameter thirtyKhzSpeed = 20'd3_125,
+parameter fortyKhzSpeed = 20'd2_500,
+parameter fiftyKhzSpeed = 20'd2_000
+)(
+    input wire logic [3:0] clkSelect,
+    input wire logic clkIn, clkRst,
+    output logic clkOut, rstStatus
+    );
+    
+    logic [20:0] cntOne = 0;
+        logic [20:0] cntTwo = 0;
+            logic [20:0] cntThree = 0;
+                logic [20:0] cntFour = 0;
+                    logic [20:0] cntFive = 0;
+    logic [20:0] cntTen = 0;
+        logic [20:0] cntTwenty = 0;
+            logic [20:0] cntThirty = 0;
+                logic [20:0] cntForty = 0;
+                    logic [20:0] cntFifty = 0;
+    
+    
+    
+    logic stbOne;
+    logic stbTwo;
+    logic stbThree;
+    logic stbFour;
+    logic stbFive;
+    logic stbTen;
+    logic stbTwenty;
+    logic stbThirty;
+    logic stbForty; 
+    logic stbFifty;
+    
+    always_ff @(posedge clkIn) begin
+        
+        rstStatus <= clkRst;
+        
+        case(clkSelect) 
+        
+            4'd1: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbOne;
+                end
+            end
+            4'd2: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbTwo;
+                end
+            end
+            4'd3: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbThree;
+                end
+            end
+            4'd4: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbFour;
+                end
+            end
+            4'd5: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbFive;
+                end
+            end
+            4'd6: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbTen;
+                end
+            end
+            4'd7: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbTwenty;
+                end
+            end
+            4'd8: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbThirty;
+                end
+            end
+            4'd9: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbForty;
+                end
+            end
+            4'd10: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbFifty;
+                end
+            end
+            
+            default: begin 
+                if(clkRst != 1) begin
+                    clkOut <= stbOne;
+                end
+            end
+        
+        endcase
+
+                    if (cntOne != oneKhzSpeed - 1) begin
+                        stbOne <= 0;
+                        cntOne <= cntOne + 1;
+                    end else begin
+                        stbOne <= 1;
+                        cntOne <= 0;
+                    end
+                    
+                    
+                    if (cntTwo != twoKhzSpeed - 1) begin
+                        stbTwo <= 0;
+                        cntTwo <= cntTwo + 1;
+                    end else begin
+                        stbTwo <= 1;
+                        cntTwo <= 0;
+                    end
+                    
+                    
+                    if (cntThree != threeKhzSpeed - 1) begin
+                        stbThree <= 0;
+                        cntThree <= cntThree + 1;
+                    end else begin
+                        stbThree <= 1;
+                        cntThree <= 0;
+                    end
+                    
+                    if (cntFour != fourKhzSpeed - 1) begin
+                        stbFour <= 0;
+                        cntFour <= cntFour + 1;
+                    end else begin
+                        stbFour <= 1;
+                        cntFour <= 0;
+                    end
+                    
+                    
+                    if (cntFive != fiveKhzSpeed - 1) begin
+                        stbFive <= 0;
+                        cntFive <= cntFive + 1;
+                    end else begin
+                        stbFive <= 1;
+                        cntFive <= 0;
+                    end
+                    
+                    
+                    if (cntTen != tenKhzSpeed - 1) begin
+                        stbTen <= 0;
+                        cntTen <= cntTen + 1;
+                    end else begin
+                        stbTen <= 1;
+                        cntTen <= 0;
+                    end
+                    
+                    if (cntTwenty != twentyKhzSpeed - 1) begin
+                        stbTwenty <= 0;
+                        cntTwenty <= cntTwenty + 1;
+                    end else begin
+                        stbTwenty <= 1;
+                        cntTwenty <= 0;
+                    end
+                    
+                    
+                    if (cntThirty != thirtyKhzSpeed - 1) begin
+                        stbThirty <= 0;
+                        cntThirty <= cntThirty + 1;
+                    end else begin
+                        stbThirty <= 1;
+                        cntThirty <= 0;
+                    end
+                    
+                    
+                    if (cntForty != fortyKhzSpeed - 1) begin
+                        stbForty <= 0;
+                        cntForty <= cntForty + 1;
+                    end else begin
+                        stbForty <= 1;
+                        cntForty <= 0;
+                    end
+                    
+                    if (cntFifty != fiftyKhzSpeed - 1) begin
+                        stbFifty <= 0;
+                        cntFifty <= cntFifty + 1;
+                    end else begin
+                        stbFifty <= 1;
+                        cntFifty <= 0;
+                    end 
+    end
+    
+endmodule
+```
+---
+
 * Variable Square-wave generation (1KHz, 500Hz, 250Hz, 1Hz, 500mHz, 250mHz)
 * Clk IP core, 125MHz sysclk input, 50MHz out
 * Switch clk reset *sw[3]*
