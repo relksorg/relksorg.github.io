@@ -7,6 +7,142 @@ nav_order: 1
 
 # SystemVerilog 
 
+### Arty A7-100T
+
+* prime factorization 
+* stores results in Distributed RAM
+* cycle and output results
+* Assumes 100MHz clock
+
+```verilog
+`timescale 1ns / 1ps
+
+module primeFactors
+#(
+parameter clkFreq = 27'd100,
+parameter slowClkFreq = 27'd100_000_000,
+parameter sampleNumber = 64'd2_487_125_557_145_446,
+parameter max64Num = 64'd9_223_372_036_854_775_807
+)(
+    input logic [3:0] sw,
+    input logic [2:0] btn,
+    input logic rst,
+    input logic CLK100MHZ,
+    input logic [15:0] dip,
+    output logic [3:0] led,
+    output logic [22:0] outWire,
+    output logic notifyOut
+    //output logic freqPinOne, freqPinTwo,
+    //output logic [6:0] outWire
+    );
+    
+    logic stb;
+    logic [26:0] clkCnt = 0; 
+    
+    logic cycleStb;
+    logic [26:0] cycleClkCnt = 0; 
+    always_ff @(posedge CLK100MHZ) begin
+        if(clkCnt != clkFreq-1) begin
+            stb <= 0;
+            clkCnt <= clkCnt + 1;
+        end else begin
+            stb <= 1;    
+            clkCnt <= 0;
+        end
+       
+       //slower clock pulse - 1 second
+        
+       if(cycleClkCnt != slowClkFreq-1) begin
+            cycleStb <= 0;
+            cycleClkCnt <= cycleClkCnt + 1;
+        end else begin
+            cycleStb <= 1;    
+            cycleClkCnt <= 0;
+        end
+    end
+    
+    //------------- is a number prime
+    
+    /*
+    logic [63:0] cnt = 2; //needs to be 2, cause # % 1 = 0
+    bit notPrime = 0;
+    bit prime = 0;
+    bit ran = 0;
+    
+    always_ff @(posedge stb) begin
+
+        if((sampleNumber % cnt) == 0) begin
+            notPrime <= notPrime + 1'b1;
+        end
+        
+        if(cnt != (sampleNumber - 1)) cnt <= cnt + 1'b1; //# % # = 0
+        else prime <= prime + 1'b1;
+        
+        led[0] <= prime;
+        led[1] <= notPrime;
+        
+    end */
+    
+    //--- prime factors ---
+    logic [15:0] L = 0;
+    logic [3:0] cycleResults = 0;
+    
+    logic [127:0] i = 2;
+    logic [15:0] n;
+    logic [22:0] factors [15:0]; 
+    bit ran = 0;
+    
+    logic [3:0] resetStorage = 0;
+    always_ff @(posedge stb) begin
+    if(sw[2]) begin 
+        n <= dip[15:0];
+        i <= 2;
+        L <= 0;
+        ran <= 0;
+        if(resetStorage != 4'hF) begin
+            resetStorage <= resetStorage + 1;
+            factors[resetStorage] <= 0;
+        end
+        
+    end
+    if(sw[0]) begin
+            if ((i * i) <= n) begin
+                if (n % i) i <= i + 1;
+                else begin
+                    n <= n / i;
+                    L <= L + 1;
+                    factors[L] <= i;
+                end
+            end
+            
+            if ((n > 1) && !((i*i) <= n)) begin
+                if(ran != 1) begin
+                    L <= L + 1;
+                    factors[L] <= n;
+                    ran = ran + 1;
+                end
+            end
+        end
+    end
+    
+    bit disp = 0;
+    always_ff @(posedge cycleStb) begin   
+    
+        if(sw[2]) cycleResults <= 0;
+        
+        if(sw[1]) begin
+            outWire[22:0] <= factors[cycleResults];
+            cycleResults <= cycleResults + 1;
+            disp <= disp + 1;
+            notifyOut <= disp;
+        end
+    end
+    
+    assign led[3:0] = sw[3:0];
+    
+endmodule
+```
+
 ---
 
 ### Genesys-ZU-5EV
