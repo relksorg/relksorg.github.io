@@ -7,6 +7,90 @@ nav_order: 1
 
 # SystemVerilog 
 
+---
+
+### Arty A7-100T
+
+* experimentation with typedef enum statements
+* grey-counter testing
+* Assumes 100MHz clock
+
+```verilog
+`timescale 1ns / 1ps
+
+module top
+#(
+parameter clkFreq = 27'd100_000_000
+)(
+    input logic [3:0] sw,
+    input logic [2:0] btn,
+    input logic rst,
+    input logic CLK100MHZ,
+    input logic [15:0] dip,
+    output logic [3:0] led,
+    output logic freqPinOne, freqPinTwo,
+    output logic [6:0] outWire
+    );
+    
+logic stb;
+logic [26:0] cnt = 0; 
+always_ff @(posedge CLK100MHZ) begin
+    if(cnt != clkFreq-1) begin
+        stb <= 0;
+        cnt <= cnt + 1;
+    end else begin
+        stb <= 1;    
+        cnt <= 0;
+    end
+end
+
+//---------- 
+
+logic [3:0] greyCnt = 0;
+bit hold = 0;
+
+always_ff @(posedge stb or negedge rst) begin
+    if(!rst) greyCnt <= 0; else begin
+        if(hold == 0) begin
+            greyCnt <= greyCnt + 1'b1;
+            if(greyCnt == 4'b1110) hold <= hold + 1;
+        end else if (hold == 1) begin
+            greyCnt <= greyCnt - 1'b1;
+            if(greyCnt == 4'b0001) hold <= hold - 1;
+        end
+    end  
+end
+
+assign led[3:0] = greyCnt[3:0];
+
+typedef enum logic [2:0] {NOP, ADD, SUB, MULT, DIV, AAA, AAB, ABA} opcode_t;
+                       //[000, 001, 010, 011, 100,  101, 110, 111]
+
+always_comb begin 
+    case(greyCnt)
+        NOP: outWire[6:0] = 6'b111111;
+        ABA: outWire[6:0] = 6'b111111; 
+        
+        default: outWire[6:0] = 6'b000000; 
+    endcase
+end
+
+
+
+//timing stuff
+always_ff @(posedge CLK100MHZ) begin
+    if(stb) begin
+        freqPinTwo <= freqPinTwo + 1;
+    end
+end
+
+always_ff @(posedge stb) freqPinOne <= freqPinOne + 1;    
+    
+endmodule
+```
+
+---
+
 ### Arty A7-100T
 
 * prime factorization 
@@ -355,6 +439,8 @@ endmodule
 ```
 ---
 
+### Genesys-ZU-5EV
+
 * Variable Square-wave generation (1KHz, 500Hz, 250Hz, 1Hz, 500mHz, 250mHz)
 * Clk IP core, 125MHz sysclk input, 50MHz out
 * Switch clk reset *sw[3]*
@@ -465,6 +551,8 @@ endmodule
 ```
 
 ---
+
+### Genesys-ZU-5EV
 
 * Square-wave generation 
 * PMOD output testing (made a custom LED PMOD device)
