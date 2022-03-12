@@ -2,7 +2,7 @@
 layout: default
 title: Verilog
 parent: Code
-nav_order: 2
+nav_order: 3
 ---
 
 # Verilog
