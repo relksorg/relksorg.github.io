@@ -20,7 +20,7 @@ nav_order: 2
 ```verilog
 `timescale 1ns / 1ps
 
-module euclids16Bit
+module gcf16Bit
 (
   input wire logic en, rst, engage,
   output     logic [15:0] finalResult,
@@ -221,7 +221,7 @@ module top(
       led[0] <= DONE_TEN;
     end 
 
-    euclids16Bit instance_one 
+    gcf16Bit instance_one 
     (
       .en(enable),
       .rst(rst),
@@ -233,7 +233,7 @@ module top(
       .DONE_FLAG(DONE_ONE)
     );
 
-      euclids16Bit instance_two 
+      gcf16Bit instance_two 
     (
       .en(enable),
       .rst(rst),
@@ -245,7 +245,7 @@ module top(
       .DONE_FLAG(DONE_TWO)
     );
 
-      euclids16Bit instance_three 
+      gcf16Bit instance_three 
     (
       .en(enable),
       .rst(rst),
@@ -257,7 +257,7 @@ module top(
       .DONE_FLAG(DONE_THREE)
     );
 
-      euclids16Bit instance_four 
+      gcf16Bit instance_four 
     (
       .en(enable),
       .rst(rst),
@@ -269,7 +269,7 @@ module top(
       .DONE_FLAG(DONE_FOUR)
     );
 
-      euclids16Bit instance_five 
+      gcf16Bit instance_five 
     (
       .en(enable),
       .rst(rst),
@@ -281,7 +281,7 @@ module top(
       .DONE_FLAG(DONE_FIVE)
     );
 
-      euclids16Bit instance_six 
+      gcf16Bit instance_six 
     (
       .en(enable),
       .rst(rst),
@@ -293,7 +293,7 @@ module top(
       .DONE_FLAG(DONE_SIX)
     );
 
-        euclids16Bit instance_seven 
+        gcf16Bit instance_seven 
     (
       .en(enable),
       .rst(rst),
@@ -305,7 +305,7 @@ module top(
       .DONE_FLAG(DONE_SEVEN)
     );
 
-        euclids16Bit instance_eight 
+        gcf16Bit instance_eight 
     (
       .en(enable),
       .rst(rst),
@@ -317,7 +317,7 @@ module top(
       .DONE_FLAG(DONE_EIGHT)
     );
 
-        euclids16Bit instance_nine 
+        gcf16Bit instance_nine 
     (
       .en(enable),
       .rst(rst),
@@ -329,7 +329,7 @@ module top(
       .DONE_FLAG(DONE_NINE)
     );
 
-        euclids16Bit instance_ten 
+        gcf16Bit instance_ten 
     (
       .en(enable),
       .rst(rst),
@@ -348,7 +348,7 @@ endmodule
 
 ### Genesys-ZU-5EV
 
-* Calling on Euclids algorithm as a dedicated module
+* Calling on gcf algorithm as a dedicated module
 
 ```verilog
 `timescale 1ns / 1ps
@@ -385,7 +385,7 @@ module top(
     assign ledCheck[7:0] = OUTPUT[7:0];
 
 
-    euclids16Bit instance_one 
+    gcf16Bit instance_one 
     (
       .en(enable),
       .rst(rst),
@@ -403,7 +403,7 @@ endmodule
 ```verilog
 `timescale 1ns / 1ps
 
-module euclids16Bit
+module gcf16Bit
 (
   input wire logic en, rst, engage,
   output     logic [15:0] finalResult,
@@ -561,7 +561,7 @@ endmodule
 
 ### Genesys-ZU-5EV
 
-* Working Euclids algorithm for multiple numbers
+* Working gcf algorithm for multiple numbers
 
 ```verilog
 `timescale 1ns / 1ps
@@ -763,10 +763,10 @@ endmodule
 
 ### Genesys-ZU-5EV
 
-* Working Euclids algorithm
+* Working gcf algorithm
 * No use of Xilinx IP cores - besides CLK wizard
 * 100MHz
-* Euclids of two 16 bit numbers
+* gcf of two 16 bit numbers
 
 ```verilog
 `timescale 1ns / 1ps
@@ -927,7 +927,7 @@ endmodule
 
 ### Genesys-ZU-5EV
 
-* Another failed Euclids algorithm implementation
+* Another failed gcf algorithm implementation
 * -> Timing? <-
 
 ```verilog
@@ -1413,7 +1413,7 @@ endmodule
 
 ### Genesys-ZU-5EV
 
-* Failed attempt of implementing Euclids algo in SV
+* Failed attempt of implementing gcf algo in SV
 * -> Timing issue <-
 * Uses Xilinx dividing core
 * 350MHz clock - Xilinx clk wizard
