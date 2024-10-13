@@ -10,9 +10,14 @@ permalink: /
 
 ---
 
-Relks.org serves as a personal catalog for my FPGA projects and learning resources.
+## Update about Easytrig
 
-*Not all of my projects have been added here*
+Hello, this website is no longer being updated! If you want to see the latest of my works checkout [easytrig.com](https://www.easytrig.com/). Easytrig offers a 
+wide range of interactive and simple calculators for phasors, circuit analysis, DSP. You’ll also find affordable or free software available for download!
+
+Ever wanted a sleek, modern serial terminal? You can find it there too. [Go check it out now!](https://www.easytrig.com/software/easyterm_download.html)
+
+Relks.org serves as a personal catalog for my FPGA projects and learning resources.
 
 ---
 
