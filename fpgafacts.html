@@ -1,0 +1,80 @@
+---
+layout: default
+title: Technical Prep & Resume Review
+permalink: /technical-prep-review
+nav_exclude: true
+search_exclude: true
+---
+
+<h1>Technical Prep &amp; Resume Review</h1>
+
+<h2>1) Homemade Networking Project Review</h2>
+<ul>
+  <li><strong>Manchester encoding:</strong> Colliding values pull the line low—detect by timing; idle is all‐high. On collision, re-attempt with random backoff via an LFSR.</li>
+  <li><strong>LFSR:</strong> Q feeds D of the next flip-flop in series, producing pseudo-random retransmit intervals.</li>
+  <li><strong>CRC8:</strong> Generated via OutputLogic; built testbenches. Had to override the initial seed—common codegen pitfall.</li>
+  <li><strong>Vivado automation:</strong> Python script invokes a .tcl target to create projects in batch mode (VHDL2008, top module, launch_simulation –simset sim_1).</li>
+  <li>Script uses <code>sys</code> and <code>os</code> to parse arguments and call Vivado in batch.</li>
+</ul>
+
+<h2>2) Broadcast UDP</h2>
+<ul>
+  <li><strong>Why UDP:</strong> Simple, one-way “yell into the void” protocol—no feedback required.</li>
+  <li><strong>MII pins:</strong> Tx error, Tx enable, Tx clock, TXD[3:0] (mirrored on RX).</li>
+  <li><strong>Clock constraint:</strong> Added “{0 20}” → 40 ns period → 25 MHz MII clock.</li>
+  <li><strong>Gotcha:</strong> Incorrect CRC dropped by switch—ILAs looked fine but no packets made it through.</li>
+</ul>
+
+<h2>3) Inference of Quantized Neural Networks</h2>
+<ul>
+  <li>Simple linear nets: dimensions (1→4), (4→16), (16→1).</li>
+  <li>Quantization: map max weight/bias to max intₙ (16/8/4-bit).</li>
+  <li><strong>DSP48E2 blocks:</strong>
+    <ul>
+      <li>27×18 signed multiplier</li>
+      <li>48-bit adder/accumulator</li>
+      <li>27-bit pre-adder</li>
+    </ul>
+  </li>
+  <li>Leverages built-in MAC units for high‐throughput inference.</li>
+</ul>
+
+<h2>Trivia &amp; Fundamentals</h2>
+<ul>
+  <li>Clock-domain crossing: Async FIFO, handshake, double flip-flop.</li>
+  <li>Mealy vs. Moore: Mealy output depends on state + input; Moore depends only on state.</li>
+  <li>Inference vs. instantiation: Tool-inferred components vs. explicit primitives (portability vs. control).</li>
+  <li>Flip-flop vs. latch: Flip-flop is edge-triggered; latch is level-sensitive (avoid latches).</li>
+  <li>JTAG: Joint Test Action Group boundary-scan standard.</li>
+  <li>Stack vs. heap: Stack = static locals; heap = dynamic <code>malloc</code>/<code>free</code>.</li>
+  <li>Reset importance: Ensures deterministic startup state.</li>
+  <li>Max representable value with N bits: 2ᴺ − 1.</li>
+  <li>CLB: LUT + FF for programmable combinational/sequential logic.</li>
+  <li>Metastability: Setup/hold violation can yield uncertain FF output.</li>
+  <li>Setup time: Data stable before clock edge; hold time: Data stable after.</li>
+  <li>Timing closure: Slack = required time − arrival time (positive = good).</li>
+  <li>LUT: Configurable truth-table memory for logic functions.</li>
+  <li>Python modules: Guard with <code>if __name__=="__main__"</code>.</li>
+  <li><code>with open(..., "w")</code>: Opens/overwrites file; returns file object.</li>
+  <li>Threads vs. processes: Threads share memory; <code>fork()</code> spawns new process.</li>
+  <li>Python niceties: f-strings; <code>os</code>/<code>subprocess.run()</code> for automation.</li>
+  <li>Directed vs. constrained-random testing: Known-behavior vs. random stimulus within bounds.</li>
+  <li>SystemVerilog: <code>=</code> vs. <code>&lt;=</code>, <code>always_comb</code>, <code>always_ff</code>, <code>always_latch</code>, <code>assign</code> for wires.</li>
+  <li>SV state machine example: <code>typedef enum logic [1:0] {STT_DATA, STT_STOP, STT_WAIT} state_t;</code></li>
+  <li>UVM basics: Agent = monitor+sequencer+driver; Env = agent+scoreboard; Test = env+interface+DUT.</li>
+</ul>
+
+<h2>Review</h2>
+<p>Your prep sheet is impressively comprehensive, covering hands-on projects and core concepts. You demonstrate:</p>
+<ul>
+  <li><strong>Depth:</strong> Real-world pitfalls (CRC, LFSR backoff, Vivado scripting).</li>
+  <li><strong>Breadth:</strong> Networking, FPGA primitives, quantized NN inference, verification frameworks.</li>
+  <li><strong>Clarity:</strong> Bullet points and “trivia” quick-refs make rapid recall easy.</li>
+</ul>
+<p><strong>To polish:</strong></p>
+<ul>
+  <li>Group related bullets under sub-headings (e.g., “Error Handling” within Networking).</li>
+  <li>Replace casual terms (“SUPER BASIC LOL”) with concise technical phrasing.</li>
+  <li>Where possible, quantify performance (e.g., MAC throughput, resource utilization).</li>
+  <li>Consider embedding minimal code snippets for clarity (e.g., CRC init code, Vivado TCL call).</li>
+</ul>
