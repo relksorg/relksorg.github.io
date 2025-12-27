@@ -29,6 +29,8 @@ Relks.org serves as a personal catalog for my FPGA projects and learning resourc
 4. Xilinx FPGA / MPSoCs
 5. Lattice FPGAs
 
+** very old RTL of mine, :)**
+
 ---
 
 ### License
